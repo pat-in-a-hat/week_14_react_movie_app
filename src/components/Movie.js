@@ -1,31 +1,29 @@
 import React from 'react';
+import Card from 'react-bootstrap/Card'
+//import { useState } from 'react';
 //import Stars from './Stars'
 
-export default class Movie extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            name: props.name,
-            description: props.description,
-            dateReleased: props.dateReleased,
-            genre: props.genre,
-            ageRating: props.ageRating,
-            image: props.image,
-            review: [],
-            stars: 0
-        }
-    }
+function Movie(props) {
+    const name = props.name
+    const description = props.description
+    const dateReleased = props.dateReleased
+    const genre = props.genre
+    const ageRating = props.ageRating
+    const image = props.image
+    const id = props.id
+    const review = []
+    const stars = 0
 
-    render(){
-        return (
-            <div className='card' style='width: 30rem'>
-                <img src={this.state.image} className='card-img-top'></img>
-                <div className='card-body'>
-                    <h5 className='card-title'>{this.state.name}</h5>
-                    <p className='card-text'>{this.state.description}</p>
+    return (
+            <Card style={{width: '18rem'}}>
+                <Card.Img variant="top" src={image} />
+                <Card.Body>
+                    <Card.Title>{name}</Card.Title>
+                    <Card.Text>{description}</Card.Text>
+                </Card.Body>
                     {/*have button with review modal pop up*/}
-                </div>
-            </div>
-        )
-    }
+            </Card>
+    )
 }
+
+export default Movie;
