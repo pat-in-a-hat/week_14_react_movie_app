@@ -1,5 +1,9 @@
 import React from 'react';
 import Movie from './Movie';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
+import CardGroup from 'react-bootstrap/CardGroup';
 
 function MovieList(){
     const moviesArray = [
@@ -98,18 +102,21 @@ function MovieList(){
         i.id = i.name + ' ' + i.dateReleased
     }
     return(
-        <div className = 'container'>
-            <div className='row'>
+        
+        <div>
+            <Container fluid='sm'>
+                <Row className='g-3'>
                 {
                 moviesArray.map(movie => {
                     return (
-                        <div className= 'col' key={movie.id}>
+                        <Col key={movie.id}>
                             <Movie {...movie}/>
-                        </div>
+                        </Col>
                     )
                 })
                 }
-            </div>
+                </Row>
+            </Container>
         </div>
     )
 }
