@@ -21,14 +21,25 @@ export default function ReviewForm(props) {
         setReview(event.target.value)
     })
 
+    const [show, setShow] = useState(false);
+
+    const handleClose = () => setShow(false);
+    const handleShow = () => setShow(true);
+
     return(
-    <Modal.Dialog>
+    <>
+    <Button variant="info" onClick={handleShow}>
+        Leave a review
+    </Button>
+
+
+    <Modal show={show} onHide={handleClose}>
       <Modal.Header closeButton>
         <Modal.Title>Leave a review</Modal.Title>
       </Modal.Header>
 
       <Modal.Body>
-      <Form>
+      <Form onSubmit = {handleSubmit}>
             <Form.Label>How many stars?</Form.Label>
             {[1,2,3,4,5].map((number) =>
             <Form.Check
@@ -36,21 +47,21 @@ export default function ReviewForm(props) {
             label={number}
             value={number}
             type='radio'
-            id={`inline-radio-${number}`}
+            key={`inline-radio-${number}`}
             />
             )}
             <Form.Group className="mb-3" controlId="reviewForm">
                 <Form.Label>What did you think of the film?</Form.Label>
-                <Form.Control as="textarea" rows={3} />
+                <Form.Control as="textarea" rows={3} autoFocus placeholder='Write your review here'/>
             </Form.Group>
       </Form>
       </Modal.Body>
 
       <Modal.Footer>
-        <Button variant="secondary">Close</Button>
-        <Button variant="primary">Save changes</Button>
+        <Button variant="secondary" onClick={handleClose}>Close</Button>
+        <Button variant="dark" type='submit' onClick={handleClose}>Save changes</Button>
       </Modal.Footer>
-    </Modal.Dialog>
-        
+    </Modal>
+    </>  
     )
 }

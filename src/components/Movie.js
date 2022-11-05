@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card'
 import Stars from './Stars'
 //import Image from 'react-bootstrap/Image'
@@ -10,6 +10,9 @@ import ReviewForm from './ReviewForm'
 //import { useState } from 'react';
 //import Stars from './Stars'
 
+//the review left in the review form modal needs to then flow upstream into the movie here
+//use frank's trick of feeding the parent function in as a prop to the child
+
 function Movie(props) {
     const name = props.name
     const description = props.description
@@ -18,9 +21,27 @@ function Movie(props) {
     const ageRating = props.ageRating
     const image = props.image
     const id = props.id
-    const reviews = [] //<ReviewList />
+    const reviewList = [] //<ReviewList />
     const stars = 0
-    const isReviewed = reviews.length > 0
+    const isReviewed = reviewList.length > 0
+
+    const [reviews, setReviews] = useState(reviewList)
+
+    const addReview = (stars, str) => {
+        const newReviews = [...reviewList]
+
+        newReviews.push(
+            {
+                key: stars + str.length,
+                text: str,
+                stars: stars,
+            }
+        )
+
+        setReviews(newReviews)
+        console.log(reviewList)
+        console.log(newReviews)
+    }
 
     return (
             <Card bg='dark' text='light' style={{width: '285px'}}>
@@ -42,8 +63,7 @@ function Movie(props) {
                     : 'No reviews yet!'
                     }*/}
                 </ListGroup>
-                <Button variant='info' onClick={() => {<ReviewForm />} }>Add Review</Button>
-                    {/*have button with review modal pop up*/}
+                    <ReviewForm addReview = {addReview}/>
             </Card>
     )
 }
