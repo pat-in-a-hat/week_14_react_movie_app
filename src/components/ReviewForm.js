@@ -6,7 +6,7 @@ import Modal from 'react-bootstrap/Modal';
 export default function ReviewForm(props) {
     //used some of Frank's instructional code here to help with React hooks and callback
     //Ensuring I'm properly handling state with the form submission
-    const [review, setReview] = useState({'stars': null, 'text': ''})
+    const [review, setReview] = useState('')//removed stars: 0, text: ''
 
     const handleSubmit = (event) => {
         event.preventDefault()
@@ -27,9 +27,10 @@ export default function ReviewForm(props) {
     }
 
     const handleChange = (event) => {
-        const stars = event.target.stars;
-        const text = event.target.text;
-        setReview({...review, 'stars': stars, 'text': text})
+        const name = event.target.name;
+        const value = event.target.value;
+        console.log(name + value)
+        setReview({text: value}) //removed ...review
     }
 
     /*const handleChange = (event => {

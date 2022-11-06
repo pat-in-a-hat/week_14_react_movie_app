@@ -6,7 +6,8 @@ export default function Review(props) {
     const reviews = props
 
   return (
-    reviews.map(review => {
+    <>
+    {reviews.map(review => {
     return(
         <div key={review.key}>
             <ListGroup.Item>{review.stars}</ListGroup.Item>
@@ -14,5 +15,7 @@ export default function Review(props) {
         </div>
     )
     })
+    }
+    </>
   )
 }

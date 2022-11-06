@@ -4,9 +4,8 @@ import Stars from './Stars'
 //import Image from 'react-bootstrap/Image'
 import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
-import ReviewList from './ReviewList'
+//import ReviewList from './ReviewList'
 import ReviewForm from './ReviewForm'
-import { useState } from 'react';
 import Review from './Review'
 //import Stars from './Stars'
 
@@ -22,10 +21,10 @@ export default function Movie(props) {
     const image = props.image
     const id = props.id
     const stars = 0
-    const reviewList = []
+    const reviewList = [{key: 3, text: 'ok', stars: 1}]
     const isReviewed = reviewList.length > 0
 
-    const [reviews, setReviews] = useState(ReviewList)
+    const [reviews, setReviews] = useState(reviewList)
 
     const addReview = (str) => {
         const newReviews = [...reviewList]
@@ -58,7 +57,7 @@ export default function Movie(props) {
                     <Card.Text>{description}</Card.Text>
                 </Card.Body>
                 <ListGroup>
-                <Review review = {reviews}/>
+                
                 </ListGroup>
                     <ReviewForm addReview = {addReview}/>
             </Card>
