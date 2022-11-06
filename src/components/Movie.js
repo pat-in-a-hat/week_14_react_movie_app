@@ -6,14 +6,14 @@ import ListGroup from 'react-bootstrap/ListGroup'
 import Button from 'react-bootstrap/Button'
 import ReviewList from './ReviewList'
 import ReviewForm from './ReviewForm'
-
-//import { useState } from 'react';
+import { useState } from 'react';
+import Review from './Review'
 //import Stars from './Stars'
 
 //the review left in the review form modal needs to then flow upstream into the movie here
 //use frank's trick of feeding the parent function in as a prop to the child
 
-function Movie(props) {
+export default function Movie(props) {
     const name = props.name
     const description = props.description
     const dateReleased = props.dateReleased
@@ -21,26 +21,30 @@ function Movie(props) {
     const ageRating = props.ageRating
     const image = props.image
     const id = props.id
-    const reviewList = [] //<ReviewList />
     const stars = 0
+    const reviewList = []
     const isReviewed = reviewList.length > 0
 
-    const [reviews, setReviews] = useState(reviewList)
+    const [reviews, setReviews] = useState(ReviewList)
 
-    const addReview = (stars, str) => {
+    const addReview = (str) => {
         const newReviews = [...reviewList]
+        console.log('review being passed into add review function')
+        console.log(str.stars)
+        console.log(str.text)
+        console.log(reviewList)
 
         newReviews.push(
             {
-                key: stars + str.length,
-                text: str,
-                stars: stars,
+                key: str.stars + str.length,
+                text: str.text,
+                stars: str.stars
             }
         )
 
         setReviews(newReviews)
-        console.log(reviewList)
-        console.log(newReviews)
+        console.log(newReviews + 'new reviews have been updated in state')
+        
     }
 
     return (
@@ -54,18 +58,9 @@ function Movie(props) {
                     <Card.Text>{description}</Card.Text>
                 </Card.Body>
                 <ListGroup>
-                    {/*{isReviewed 
-                    ? reviews.map(review => {
-                        return (
-                            <ListGroup.Item>{review}</ListGroup.Item>
-                        )
-                        })
-                    : 'No reviews yet!'
-                    }*/}
+                <Review review = {reviews}/>
                 </ListGroup>
                     <ReviewForm addReview = {addReview}/>
             </Card>
     )
 }
-
-export default Movie;
