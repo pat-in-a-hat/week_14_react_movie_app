@@ -27,23 +27,23 @@ export default function Movie(props) {
     const [reviews, setReviews] = useState(reviewList)
 
     const addReview = (str) => {
-        const newReviews = [...reviewList]
+        const newReviews = [...reviews]
         console.log('review being passed into add review function')
-        console.log(str.stars)
-        console.log(str.text)
-        console.log(reviews)
-        console.log(newReviews)
+        //console.log(str.stars)
+        //console.log(str.text)
+        //console.log(reviews)
+        //console.log(newReviews)
 
         newReviews.push(
             {
-                key: str.stars + str.text.length + Date.now,
+                key: str.stars + str.text.length + Date.now(),
                 text: str.text,
                 stars: str.stars
             }
         )
         console.log(newReviews)
         setReviews(newReviews)
-        console.log(reviews)
+        //console.log(reviews)
         
     }
 

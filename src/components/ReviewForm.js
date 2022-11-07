@@ -66,14 +66,14 @@ export default function ReviewForm(props) {
                 <Form.Label>What did you think of the film?</Form.Label>
                 <Form.Control as="textarea" name='text' onChange={handleChange} rows={3} autoFocus placeholder='Write your review here'/>
             </Form.Group>
-            <input type="submit"/>
+            <Modal.Footer>
+            <Button variant="secondary" onClick={handleClose}>Close</Button>
+            <Button variant="dark" type='submit' value='submit'onClick={handleClose}>Save changes</Button>
+            </Modal.Footer>
       </Form>
       </Modal.Body>
 
-      <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>Close</Button>
-        <Button variant="dark" type='submit' value='submit'onClick={handleClose}>Save changes</Button>
-      </Modal.Footer>
+      
     </Modal>
     </>  
     )
