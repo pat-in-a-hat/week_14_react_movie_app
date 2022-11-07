@@ -21,7 +21,7 @@ export default function Movie(props) {
     const image = props.image
     const id = props.id
     const stars = 0
-    const reviewList = [{key: 3, text: 'ok', stars: 1}]
+    const reviewList = []
     const isReviewed = reviewList.length > 0
 
     const [reviews, setReviews] = useState(reviewList)
@@ -31,18 +31,19 @@ export default function Movie(props) {
         console.log('review being passed into add review function')
         console.log(str.stars)
         console.log(str.text)
-        console.log(reviewList)
+        console.log(reviews)
+        console.log(newReviews)
 
         newReviews.push(
             {
-                key: str.stars + str.length,
+                key: str.stars + str.text.length + Date.now,
                 text: str.text,
                 stars: str.stars
             }
         )
-
+        console.log(newReviews)
         setReviews(newReviews)
-        console.log(newReviews + 'new reviews have been updated in state')
+        console.log(reviews)
         
     }
 
@@ -57,7 +58,7 @@ export default function Movie(props) {
                     <Card.Text>{description}</Card.Text>
                 </Card.Body>
                 <ListGroup>
-                
+
                 </ListGroup>
                     <ReviewForm addReview = {addReview}/>
             </Card>

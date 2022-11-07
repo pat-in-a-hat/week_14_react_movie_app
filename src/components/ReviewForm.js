@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { useReducer} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
@@ -11,8 +12,7 @@ export default function ReviewForm(props) {
     const handleSubmit = (event) => {
         event.preventDefault()
 
-        const stars = review.stars;
-        const text = review.text;
+        console.log('event submit ' + review)
 
         /*if (!Number(stars)) {
             alert('Please add your star rating!')
@@ -27,15 +27,9 @@ export default function ReviewForm(props) {
     }
 
     const handleChange = (event) => {
-        const name = event.target.name;
-        const value = event.target.value;
-        console.log(name + value)
-        setReview({text: value}) //removed ...review
+        console.log({...review, [event.target.name]: event.target.value})
+        setReview({...review, [event.target.name]: event.target.value}) //removed ...review
     }
-
-    /*const handleChange = (event => {
-        setReview(event.target.value)
-    })*/
 
     const [show, setShow] = useState(false);
 
@@ -55,7 +49,7 @@ export default function ReviewForm(props) {
       </Modal.Header>
 
       <Modal.Body>
-      <Form onSubmit = {handleSubmit}>
+      <Form onSubmit={handleSubmit}>
             <Form.Label>How many stars?</Form.Label>
             {[1,2,3,4,5].map((number) =>
             <Form.Check
@@ -78,7 +72,7 @@ export default function ReviewForm(props) {
 
       <Modal.Footer>
         <Button variant="secondary" onClick={handleClose}>Close</Button>
-        <Button variant="dark" type='submit' value='Submit'onClick={handleClose}>Save changes</Button>
+        <Button variant="dark" type='submit' value='submit'onClick={handleClose}>Save changes</Button>
       </Modal.Footer>
     </Modal>
     </>  
