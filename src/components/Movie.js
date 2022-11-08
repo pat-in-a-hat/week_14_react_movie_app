@@ -7,6 +7,7 @@ import Button from 'react-bootstrap/Button'
 //import ReviewList from './ReviewList'
 import ReviewForm from './ReviewForm'
 import Review from './Review'
+import Badge from 'react-bootstrap/Badge';
 //import Stars from './Stars'
 
 //the review left in the review form modal needs to then flow upstream into the movie here
@@ -16,10 +17,10 @@ export default function Movie(props) {
     const name = props.name
     const description = props.description
     const dateReleased = props.dateReleased
-    const genre = props.genre
+    //const genre = props.genre
     const ageRating = props.ageRating
     const image = props.image
-    const id = props.id
+    //const id = props.id
     const stars = 0
     const reviewList = []
     const isReviewed = reviewList.length > 0
@@ -47,18 +48,28 @@ export default function Movie(props) {
         
     }
 
+    const starReviews = (reviewList) => {
+        let count = 0
+        let starCount = 0
+        for (let i of reviewList) {
+            count += 1
+            starCount += i.stars
+        }
+        stars = starCount / count
+    }
+
     return (
             <Card bg='dark' text='light' style={{width: '285px'}}>
                 <Card.Body>
                 <Card.Img src={image} style={{width: '250px'}} className='align-items-center'/>
                     <Card.Title>{name}</Card.Title>
                     <Card.Subtitle className='mb-2 text-muted'>
-                        {dateReleased} - {ageRating} {isReviewed ? <Stars rating={stars} /> : ' '}
+                        {dateReleased} - {ageRating} {isReviewed ? <Badge bg='warning' pill>{starReviews}</Badge> : ' '}
                     </Card.Subtitle>
                     <Card.Text>{description}</Card.Text>
                 </Card.Body>
-                <ListGroup>
-
+                <ListGroup variant='flush' bg='dark' text='light'>
+                    <Review reviews = {reviews}/>
                 </ListGroup>
                     <ReviewForm addReview = {addReview}/>
             </Card>
