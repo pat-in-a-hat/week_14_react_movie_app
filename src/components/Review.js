@@ -9,7 +9,7 @@ export default function Review(props) {
     <>
     {reviews.map(review => {
     return(
-            <ListGroup.Item key={review.key}>
+            <ListGroup.Item bg='dark' text='light' key={review.key}>
                 {review.text} <Badge bg='warning' pill>{review.stars}</Badge>
             </ListGroup.Item>
     )

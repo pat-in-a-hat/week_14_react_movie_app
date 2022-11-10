@@ -68,7 +68,7 @@ export default function Movie(props) {
                     </Card.Subtitle>
                     <Card.Text>{description}</Card.Text>
                 </Card.Body>
-                <ListGroup variant='flush' bg='dark' text='light'>
+                <ListGroup bg='dark' text='light'>
                     <Review reviews = {reviews}/>
                 </ListGroup>
                     <ReviewForm addReview = {addReview}/>
