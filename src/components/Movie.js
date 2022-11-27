@@ -1,13 +1,16 @@
 import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card'
-import Stars from './Stars'
+//import Stars from './Stars'
 //import Image from 'react-bootstrap/Image'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Button from 'react-bootstrap/Button'
+//import Button from 'react-bootstrap/Button'
 //import ReviewList from './ReviewList'
 import ReviewForm from './ReviewForm'
 import Review from './Review'
 import Badge from 'react-bootstrap/Badge';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 //import Stars from './Stars'
 
 //the review left in the review form modal needs to then flow upstream into the movie here
@@ -58,20 +61,32 @@ export default function Movie(props) {
         stars = starCount / count
     }
 
+    //star emoticon is &#9733 - putting here in case I use it in the future
+    //style={{width: '285px'}}
+
     return (
-            <Card bg='dark' text='light' style={{width: '285px'}}>
+            <Card bg='dark' text='light' >
                 <Card.Body>
-                <Card.Img src={image} style={{width: '250px'}} className='align-items-center'/>
                     <Card.Title>{name}</Card.Title>
                     <Card.Subtitle className='mb-2 text-muted'>
                         {dateReleased} - {ageRating} {isReviewed ? <Badge bg='warning' pill>{starReviews}</Badge> : ' '}
                     </Card.Subtitle>
-                    <Card.Text>{description}</Card.Text>
+                    <Container>
+                    <Row>
+                        <Col>
+                            <Card.Img src={image} style={{width: '250px'}} className='align-items-center'/>
+                        </Col>
+                        <Col>
+                            <Card.Text>{description}</Card.Text>
+                            <ListGroup bg='dark' text='light'>
+                            <Review reviews = {reviews}/>
+                            </ListGroup>
+                            <ReviewForm addReview = {addReview}/>
+                        </Col>
+                    </Row>
+                    </Container>
                 </Card.Body>
-                <ListGroup bg='dark' text='light'>
-                    <Review reviews = {reviews}/>
-                </ListGroup>
-                    <ReviewForm addReview = {addReview}/>
+                
             </Card>
     )
 }
