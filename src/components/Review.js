@@ -1,6 +1,6 @@
 import React from 'react'
 import ListGroup from 'react-bootstrap/ListGroup'
-import Badge from 'react-bootstrap/Badge';
+import Stars from './Stars'
 
 export default function Review(props) {
     const reviews = props.reviews
@@ -10,7 +10,7 @@ export default function Review(props) {
     {reviews.map(review => {
     return(
             <ListGroup.Item bg='dark' text='light' key={review.key}>
-                {review.text} <Badge bg='warning' pill>{review.stars}</Badge>
+                {review.text} <Stars stars = {review.stars}/>
             </ListGroup.Item>
     )
     })

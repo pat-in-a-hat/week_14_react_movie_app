@@ -104,8 +104,8 @@ function MovieList(){
     return(
         
         <div>
-            <Container fluid='sm'>
-                <Row className='g-3'>
+            <Container fluid className='bg-secondary'>
+                <Row lg={2} md={'auto'}>
                 {
                 moviesArray.map(movie => {
                     return (

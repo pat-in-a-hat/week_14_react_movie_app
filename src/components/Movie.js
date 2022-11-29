@@ -67,20 +67,18 @@ export default function Movie(props) {
     return (
             <Card bg='dark' text='light' >
                 <Card.Body>
-                    <Card.Title>{name}</Card.Title>
-                    <Card.Subtitle className='mb-2 text-muted'>
-                        {dateReleased} - {ageRating} {isReviewed ? <Badge bg='warning' pill>{starReviews}</Badge> : ' '}
-                    </Card.Subtitle>
                     <Container>
                     <Row>
                         <Col>
                             <Card.Img src={image} style={{width: '250px'}} className='align-items-center'/>
                         </Col>
                         <Col>
+                            <Card.Title>{name}</Card.Title>
+                            <Card.Subtitle className='mb-2 text-muted'>
+                                {dateReleased} - {ageRating} {isReviewed ? <Badge bg='warning' pill>{starReviews}</Badge> : ' '}
+                            </Card.Subtitle>
                             <Card.Text>{description}</Card.Text>
-                            <ListGroup bg='dark' text='light'>
                             <Review reviews = {reviews}/>
-                            </ListGroup>
                             <ReviewForm addReview = {addReview}/>
                         </Col>
                     </Row>
