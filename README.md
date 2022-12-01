@@ -14,6 +14,7 @@ A react web application that displays a handful of of 80s and 90s movies and giv
 :hammer_and_wrench: Building out a navigation feature with pagination for controlled movie loading
 
 :hammer_and_wrench: Further mobile development for cleaner UX
+
 -----------------------------------------------------
 ## Requirements:
 Please refer to the packages.json file or run 'npm  install' once the git repository is cloned to acquire the necessary packages to run this program.
