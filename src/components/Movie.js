@@ -2,12 +2,12 @@ import React, {useState} from 'react';
 import Card from 'react-bootstrap/Card'
 //import Stars from './Stars'
 //import Image from 'react-bootstrap/Image'
-import ListGroup from 'react-bootstrap/ListGroup'
+//import ListGroup from 'react-bootstrap/ListGroup'
 //import Button from 'react-bootstrap/Button'
 //import ReviewList from './ReviewList'
 import ReviewForm from './ReviewForm'
 import Review from './Review'
-import Badge from 'react-bootstrap/Badge';
+//import Badge from 'react-bootstrap/Badge';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -24,13 +24,15 @@ export default function Movie(props) {
     const ageRating = props.ageRating
     const image = props.image
     //const id = props.id
-    const stars = 0
+    //const stars = 0
     const reviewList = []
-    const isReviewed = reviewList.length > 0
+    //const isReviewed = reviewList.length > 0
 
     const [reviews, setReviews] = useState(reviewList)
 
+    //utilizes the use state hook to capture and save the review, in this case to the local array ReviewList
     const addReview = (str) => {
+        //taking a shallow copy here before editing
         const newReviews = [...reviews]
         console.log('review being passed into add review function')
         //console.log(str.stars)
@@ -38,6 +40,7 @@ export default function Movie(props) {
         //console.log(reviews)
         //console.log(newReviews)
 
+        //pushing to the shallow copy
         newReviews.push(
             {
                 key: str.stars + str.text.length + Date.now(),
@@ -45,12 +48,17 @@ export default function Movie(props) {
                 stars: str.stars
             }
         )
+
+        //updating state with new array that includes current review
         console.log(newReviews)
         setReviews(newReviews)
         //console.log(reviews)
         
     }
 
+
+    /*
+    might add this back in later - just a counter to give review average in the subtitle
     const starReviews = (reviewList) => {
         let count = 0
         let starCount = 0
@@ -59,10 +67,10 @@ export default function Movie(props) {
             starCount += i.stars
         }
         stars = starCount / count
-    }
 
-    //star emoticon is &#9733 - putting here in case I use it in the future
-    //style={{width: '285px'}}
+        {isReviewed ? <Badge bg='warning' pill>{starReviews}</Badge> : ' '}
+    }*/
+
 
     return (
             <Card bg='dark' text='light' >
@@ -75,7 +83,7 @@ export default function Movie(props) {
                         <Col>
                             <Card.Title>{name}</Card.Title>
                             <Card.Subtitle className='mb-2 text-muted'>
-                                {dateReleased} - {ageRating} {isReviewed ? <Badge bg='warning' pill>{starReviews}</Badge> : ' '}
+                                {dateReleased} - {ageRating}
                             </Card.Subtitle>
                             <Card.Text>{description}</Card.Text>
                             <Review reviews = {reviews}/>

@@ -5,6 +5,9 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import CardGroup from 'react-bootstrap/CardGroup';
 
+
+//have a fixed movie array instead of using IMDB API or another movie API here
+//focus of this project is making sure state transfers are correct, I use APIs in other projects
 function MovieList(){
     const moviesArray = [
         {
@@ -101,6 +104,8 @@ function MovieList(){
     for (let i of moviesArray){
         i.id = i.name + ' ' + i.dateReleased
     }
+
+    //just mapping the movies array and passing the info to our Movie component
     return(
         
         <div>

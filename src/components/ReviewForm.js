@@ -4,6 +4,9 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import Modal from 'react-bootstrap/Modal';
 
+
+//this component displays a "leave review" button that opens a review modal during an on click event
+//
 export default function ReviewForm(props) {
     //used some of Frank's instructional code here to help with React hooks and callback
     //Ensuring I'm properly handling state with the form submission
